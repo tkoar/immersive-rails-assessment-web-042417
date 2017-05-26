@@ -1,0 +1,12 @@
+<h2><%= @episode.number %></h2>
+<ol>
+  <% @episode.appearences.each do |appearence| %>
+    <li><%=appearence.guest%></li>
+    <% end %>
+</ol>
+
+<%= form_tag ({controller: 'appearences', action: 'create', method: 'post'}) do %>
+  <p>Enter Guest Star Name:<%= text_field_tag :name %></p>
+<%= hidden_field_tag("episode_id", value = @episode.id) %>
+<%= submit_tag "Create Appearence" %>
+<% end %>

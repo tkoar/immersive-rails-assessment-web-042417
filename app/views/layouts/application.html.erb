@@ -9,6 +9,28 @@
   </head>
 
   <body>
+    <% if current_user %>
+      <%= form_tag 'sessions#create' do %>
+        Name: <%= text_field_tag :name %>
+        <br>
+        <br>
+        Password: <%= password_field_tag :password %>
+        <br>
+        <br>
+        <%= submit_tag "Log In" %>
+        <% end %>
+    <% else %>
+        <button><%= link_to "Log Out", 'sessions#destroy', method: :delete %></button>
+    <% end %>
+
+    <br>
+    <h3>OR</h3>
+    <br>
+    <button><%= link_to "Sign Up", new_user_path %></button>
+<br>
+<br>
+    <h3><%= link_to "See all episodes", episodes_path %></h3> 
+
     <%= yield %>
   </body>
 </html>
